@@ -114,6 +114,8 @@ let
           lazydev-nvim
         ];
 
+        arrow = pkgs.vimPlugins.arrow-nvim;
+
       };
 
       # shared libraries to be added to LD_LIBRARY_PATH
@@ -180,6 +182,7 @@ let
           treesitter = true;
           themer = true;
           colorscheme = "catppuccin";
+          arrow = true;
           test = true;
           example = {
             youCan = "add more than just booleans";
