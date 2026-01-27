@@ -116,6 +116,7 @@ let
 
         arrow = pkgs.vimPlugins.arrow-nvim;
 
+        autopairs = pkgs.vimPlugins.nvim-autopairs;
       };
 
       # shared libraries to be added to LD_LIBRARY_PATH
@@ -183,6 +184,7 @@ let
           themer = true;
           colorscheme = "catppuccin";
           arrow = true;
+          autopairs = true;
           test = true;
           example = {
             youCan = "add more than just booleans";

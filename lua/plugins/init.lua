@@ -14,4 +14,7 @@ return {
 	{
 		import = "plugins.arrow",
 	},
+	{
+		import = "plugins.autopairs",
+	},
 }
