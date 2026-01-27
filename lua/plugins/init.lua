@@ -17,4 +17,7 @@ return {
 	{
 		import = "plugins.autopairs",
 	},
+	{
+		import = "plugins.blink",
+	},
 }
