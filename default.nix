@@ -64,6 +64,14 @@ let
         general = with pkgs; [
         ];
 
+        git = with pkgs; [
+          git
+        ];
+
+        codesnap = with pkgs; [
+          codesnap
+        ];
+
         lsp = with pkgs; [
           lua-language-server
         ];
@@ -217,6 +225,7 @@ let
           auto-session = true;
           blink = true;
           codecompanion = true;
+          codesnap = true;
           colorizer = true;
           conform = true;
           comment = true;

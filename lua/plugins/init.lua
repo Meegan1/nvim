@@ -27,6 +27,9 @@ return {
 		import = "plugins.codecompanion",
 	},
 	{
+		import = "plugins.codesnap",
+	},
+	{
 		import = "plugins.colorizer",
 	},
 	{
