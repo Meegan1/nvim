@@ -3,6 +3,11 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
     flake-parts.url = "github:hercules-ci/flake-parts";
+
+    plugins-mcphub-nvim = {
+      url = "github:ravitemer/mcphub.nvim";
+      flake = false;
+    };
   };
 
   outputs =

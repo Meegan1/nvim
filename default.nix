@@ -75,6 +75,7 @@ let
 
       startupPlugins = {
         general = with pkgs.vimPlugins; [
+          plenary-nvim
           lze
           lzextras
         ];
@@ -105,9 +106,11 @@ let
       };
 
       optionalPlugins = {
-        gitPlugins = with pkgs.vimPlugins; [
+        git = with pkgs.vimPlugins; [
           vim-fugitive
-          vim-gitgutter
+          vim-rhubarb
+          vim-git
+          gitsigns-nvim
         ];
 
         general = with pkgs.vimPlugins; [ ];
@@ -119,6 +122,12 @@ let
         arrow = pkgs.vimPlugins.arrow-nvim;
         autopairs = pkgs.vimPlugins.nvim-autopairs;
         blink = pkgs.vimPlugins.blink-cmp;
+        codecompanion = with pkgs.vimPlugins; [
+          codecompanion-nvim
+          codecompanion-history-nvim
+          pkgs.neovimPlugins.mcphub-nvim
+        ];
+        fzf-lua = pkgs.vimPlugins.fzf-lua;
       };
 
       # shared libraries to be added to LD_LIBRARY_PATH
@@ -180,7 +189,7 @@ let
         # (and other information to pass to lua)
         categories = {
           general = true;
-          gitPlugins = true;
+          git = true;
           lsp = true;
           treesitter = true;
 
@@ -191,6 +200,8 @@ let
           autopairs = true;
           auto-session = true;
           blink = true;
+          codecompanion = true;
+          fzf-lua = true;
           oil = true;
 
           test = true;

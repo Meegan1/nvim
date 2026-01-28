@@ -23,4 +23,19 @@ return {
 	{
 		import = "plugins.blink",
 	},
+	{
+		import = "plugins.codecompanion",
+	},
+	{
+		import = "plugins.fzf-lua",
+	},
+	{
+		import = "plugins.fugitive",
+	},
+	{
+		import = "plugins.gitsigns",
+	},
+	{
+		import = "plugins.mcphub",
+	},
 }

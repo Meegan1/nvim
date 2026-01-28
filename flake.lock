@@ -64,11 +64,28 @@
         "type": "github"
       }
     },
+    "plugins-mcphub-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1768730387,
+        "narHash": "sha256-g9tPvjThz6EUk7zcY7lL+YH4lrT4x3FJ6jrNMHA8PAE=",
+        "owner": "ravitemer",
+        "repo": "mcphub.nvim",
+        "rev": "7cd5db330f41b7bae02b2d6202218a061c3ebc1f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ravitemer",
+        "repo": "mcphub.nvim",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "flake-parts": "flake-parts",
         "nixCats": "nixCats",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "plugins-mcphub-nvim": "plugins-mcphub-nvim"
       }
     }
   },
