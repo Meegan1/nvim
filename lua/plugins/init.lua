@@ -39,6 +39,9 @@ return {
 		import = "plugins.copilot",
 	},
 	{
+		import = "plugins.dadbod",
+	},
+	{
 		import = "plugins.fzf-lua",
 	},
 	{

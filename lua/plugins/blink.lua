@@ -42,6 +42,16 @@ return {
 
 					return filtered
 				end)(),
+
+				providers = (function()
+					local providers = {}
+
+					if nixCats("dadbod") then
+						providers.dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" }
+					end
+
+					return providers
+				end)(),
 			},
 
 			completion = {

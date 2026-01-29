@@ -142,6 +142,11 @@ let
           comment-nvim
         ];
         copilot = pkgs.vimPlugins.copilot-lua;
+        dadbod = with pkgs.vimPlugins; [
+          vim-dadbod
+          vim-dadbod-ui
+          vim-dadbod-completion
+        ];
         fzf-lua = pkgs.vimPlugins.fzf-lua;
         lualine =
           with pkgs.vimPlugins;
@@ -230,6 +235,7 @@ let
           conform = true;
           comment = true;
           copilot = true;
+          dadbod = true;
           fzf-lua = true;
           lualine = true;
           oil = true;
