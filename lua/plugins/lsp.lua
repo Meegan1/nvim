@@ -430,4 +430,14 @@ return {
 			},
 		},
 	},
+	{
+		"shopify_theme_ls",
+		for_cat = "lsp",
+		before = function(plugin)
+			lspConfig(plugin)
+		end,
+		load = function(name)
+			lspEnable(name)
+		end,
+	},
 }

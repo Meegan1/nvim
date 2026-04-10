@@ -89,6 +89,7 @@ let
           copilot-language-server
           astro-language-server
           tailwindcss-language-server
+          shopify-cli
         ];
 
         treesitter = with pkgs; [
