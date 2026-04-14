@@ -83,15 +83,15 @@
     "plugins-mcphub.nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1768730387,
-        "narHash": "sha256-g9tPvjThz6EUk7zcY7lL+YH4lrT4x3FJ6jrNMHA8PAE=",
-        "owner": "ravitemer",
+        "lastModified": 1773913086,
+        "narHash": "sha256-3UsfSpiWarEZfWxF9SL0herrEBIaUmQLixcfRWYVWic=",
+        "owner": "bahaaza",
         "repo": "mcphub.nvim",
-        "rev": "7cd5db330f41b7bae02b2d6202218a061c3ebc1f",
+        "rev": "f94e1c8e1aea68c3f8f6df5cf51c752033584fd0",
         "type": "github"
       },
       "original": {
-        "owner": "ravitemer",
+        "owner": "bahaaza",
         "repo": "mcphub.nvim",
         "type": "github"
       }

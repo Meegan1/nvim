@@ -5,7 +5,7 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     "plugins-mcphub.nvim" = {
-      url = "github:ravitemer/mcphub.nvim";
+      url = "github:bahaaza/mcphub.nvim";
       flake = false;
     };
     "plugins-mdx.nvim" = {
