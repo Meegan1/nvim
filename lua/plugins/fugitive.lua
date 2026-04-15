@@ -120,6 +120,12 @@ return {
 
 					vim.api.nvim_buf_set_lines(bufnr, 1, 1, false, context)
 
+					-- Reset Copilot cache so suggestions are fresh for this commit
+					local ok, copilot = pcall(require, "copilot.suggestion")
+					if ok then
+						copilot.dismiss()
+					end
+
 					-- Move cursor to line 1 (top, as usual)
 					vim.api.nvim_win_set_cursor(0, { 1, 0 })
 				end,
