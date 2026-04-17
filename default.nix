@@ -65,6 +65,8 @@ let
           perl5Packages.NeovimExt
           python314Packages.pynvim
           neovim-node-client
+          ripgrep
+          fzf
         ];
 
         git = with pkgs; [
