@@ -64,6 +64,22 @@
         "type": "github"
       }
     },
+    "plugins-dropbar.nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1777108042,
+        "narHash": "sha256-EN4iN76zOn4IF7A1cT3p9a2EzlFCRa/eHR325QzPLv8=",
+        "owner": "Bekaboo",
+        "repo": "dropbar.nvim",
+        "rev": "f0a42bd92aa647e44221397723453403f5e20f16",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Bekaboo",
+        "repo": "dropbar.nvim",
+        "type": "github"
+      }
+    },
     "plugins-lze": {
       "flake": false,
       "locked": {
@@ -213,6 +229,7 @@
         "flake-parts": "flake-parts",
         "nixCats": "nixCats",
         "nixpkgs": "nixpkgs",
+        "plugins-dropbar.nvim": "plugins-dropbar.nvim",
         "plugins-lze": "plugins-lze",
         "plugins-mcphub.nvim": "plugins-mcphub.nvim",
         "plugins-mdx.nvim": "plugins-mdx.nvim",

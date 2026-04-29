@@ -4,6 +4,10 @@
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
     flake-parts.url = "github:hercules-ci/flake-parts";
 
+    "plugins-dropbar.nvim" = {
+      url = "github:Bekaboo/dropbar.nvim";
+      flake = false;
+    };
     "plugins-mcphub.nvim" = {
       url = "github:bahaaza/mcphub.nvim";
       flake = false;

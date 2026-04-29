@@ -13,6 +13,7 @@ return {
 						or vim.fn.win_gettype(win) ~= ""
 						or vim.wo[win].winbar ~= ""
 						or vim.bo[buf].ft == "help"
+						or vim.bo[buf].buftype == "terminal"
 					then
 						return false
 					end
@@ -33,6 +34,12 @@ return {
 
 				sources = function(buf, _)
 					local sources = require("dropbar.sources")
+
+					if vim.bo[buf].buftype == "terminal" then
+						return {
+							sources.terminal,
+						}
+					end
 
 					return {
 						sources.path,

@@ -222,7 +222,7 @@ let
           nvim-dap-ui
           nvim-dap-virtual-text
         ];
-        dropbar = pkgs.vimPlugins.dropbar-nvim;
+        dropbar = pkgs.neovimPlugins.dropbar-nvim;
         flash = pkgs.vimPlugins.flash-nvim;
         fzf-lua = pkgs.vimPlugins.fzf-lua;
         github = pkgs.vimPlugins.octo-nvim;
@@ -441,7 +441,11 @@ forEachSystem (
   {
     # this will make a package out of each of the packageDefinitions defined above
     # and set the default package to the one passed in here.
-    packages = utils.mkAllWithDefault defaultPackage;
+    packages = (utils.mkAllWithDefault defaultPackage) // {
+      nvim-unwrapped = pkgs.writeShellScriptBin "unwrap-nvim" ''
+        exec env UNWRAP_IT=true ${defaultPackage}/bin/nvim "$@"
+      '';
+    };
 
     # choose your package for devShell
     # and add whatever else you want in it.
