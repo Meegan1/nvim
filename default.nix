@@ -94,6 +94,10 @@ let
           shopify-cli
         ];
 
+        sops = with pkgs; [
+          sops
+        ];
+
         treesitter = with pkgs; [
           (
             let
@@ -389,6 +393,7 @@ let
           schemastore = true;
           screenkey = true;
           snacks = true;
+          sops = true;
           splitjoin = true;
           surround = true;
           testing = true;

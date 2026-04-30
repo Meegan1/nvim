@@ -144,6 +144,9 @@ return {
 		import = "plugins.snacks",
 	},
 	{
+		import = "plugins.sops",
+	},
+	{
 		import = "plugins.splitjoin",
 	},
 	{
