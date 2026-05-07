@@ -92,6 +92,7 @@ let
           astro-language-server
           tailwindcss-language-server
           shopify-cli
+          intelephense
         ];
 
         sops = with pkgs; [

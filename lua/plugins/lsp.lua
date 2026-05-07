@@ -440,4 +440,14 @@ return {
 			lspEnable(name)
 		end,
 	},
+	{
+		"intelephense",
+		for_cat = "lsp",
+		before = function(plugin)
+			lspConfig(plugin)
+		end,
+		load = function(name)
+			lspEnable(name)
+		end,
+	},
 }
