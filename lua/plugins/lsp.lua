@@ -415,6 +415,7 @@ return {
 				"typescript",
 				"typescriptreact",
 				"astro",
+				"blade",
 			},
 			root_markers = {
 				"tailwind.config.js",
