@@ -46,6 +46,9 @@ let
       # (utils.fixSystemizedOverlay inputs.codeium.overlays
       #   (system: inputs.codeium.overlays.${system}.default)
       # )
+      (final: prev: {
+        laravel-ls = final.callPackage ./nix/laravel-ls.nix { };
+      })
     ];
 
   categoryDefinitions =
@@ -93,6 +96,7 @@ let
           tailwindcss-language-server
           shopify-cli
           intelephense
+          laravel-ls
         ];
 
         sops = with pkgs; [

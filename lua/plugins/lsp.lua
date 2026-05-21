@@ -450,5 +450,24 @@ return {
 		load = function(name)
 			lspEnable(name)
 		end,
+		lsp = function()
+			return {
+				filetypes = {
+					"php",
+					"blade",
+					"twig",
+				},
+			}
+		end,
+	},
+	{
+		"laravel_ls",
+		for_cat = "lsp",
+		before = function(plugin)
+			lspConfig(plugin)
+		end,
+		load = function(name)
+			lspEnable(name)
+		end,
 	},
 }
