@@ -63,7 +63,7 @@
         ];
         flake =
           let
-            myNixCats = import ./default.nix { inherit inputs; };
+            myNixCats = import ./nix { inherit inputs; };
           in
           {
 
