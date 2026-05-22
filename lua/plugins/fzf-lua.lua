@@ -133,11 +133,11 @@ return {
 			desc = "fzf-lua: lsp workspace symbols",
 		})
 
-		-- Undo history (built into fzf-lua)
+		-- Undo tree
 		vim.keymap.set("n", "<leader>fu", function()
-			require("modules.fzf.undo").undo()
+			fzf.undotree()
 		end, {
-			desc = "fzf-lua: undo history",
+			desc = "fzf-lua: undo tree",
 		})
 
 		-- FZF-Lua LSP code actions
