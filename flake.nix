@@ -52,6 +52,10 @@
       url = "github:moyiz/blink-emoji.nvim";
       flake = false;
     };
+    "plugins-octo.nvim" = {
+      url = "github:pwntester/octo.nvim";
+      flake = false;
+    };
   };
 
   outputs =

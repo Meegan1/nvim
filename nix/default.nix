@@ -238,7 +238,7 @@ let
         dropbar = pkgs.neovimPlugins.dropbar-nvim;
         flash = pkgs.vimPlugins.flash-nvim;
         fzf-lua = pkgs.vimPlugins.fzf-lua;
-        github = pkgs.vimPlugins.octo-nvim;
+        github = pkgs.neovimPlugins.octo-nvim;
         glance = pkgs.vimPlugins.glance-nvim;
         grug-far = pkgs.vimPlugins.grug-far-nvim;
         hydra = pkgs.vimPlugins.hydra-nvim;

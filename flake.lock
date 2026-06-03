@@ -224,6 +224,22 @@
         "type": "github"
       }
     },
+    "plugins-octo.nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1780443417,
+        "narHash": "sha256-PXLzZ4+vXIIEbhOaoSowKCmsfDaHlDfpFlYrijamVC8=",
+        "owner": "pwntester",
+        "repo": "octo.nvim",
+        "rev": "c86a43da3514dbe916eb96ecac4d776890078786",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pwntester",
+        "repo": "octo.nvim",
+        "type": "github"
+      }
+    },
     "plugins-screenkey.nvim": {
       "flake": false,
       "locked": {
@@ -271,6 +287,7 @@
         "plugins-neotest-vitest": "plugins-neotest-vitest",
         "plugins-nvim-nio": "plugins-nvim-nio",
         "plugins-nx.nvim": "plugins-nx.nvim",
+        "plugins-octo.nvim": "plugins-octo.nvim",
         "plugins-screenkey.nvim": "plugins-screenkey.nvim",
         "plugins-snacks.nvim": "plugins-snacks.nvim"
       }
