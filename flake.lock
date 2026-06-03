@@ -64,6 +64,38 @@
         "type": "github"
       }
     },
+    "plugins-blink-cmp-git": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1779950429,
+        "narHash": "sha256-Q/QUN2R3zgrJwyypD3b7da1PVOnn8zyoqctoyhZdK+M=",
+        "owner": "Kaiser-Yang",
+        "repo": "blink-cmp-git",
+        "rev": "d3f2a9067ab028e779d08e61bf0b054939011316",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Kaiser-Yang",
+        "repo": "blink-cmp-git",
+        "type": "github"
+      }
+    },
+    "plugins-blink-emoji.nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1775942320,
+        "narHash": "sha256-qBJ0zwkKlxZ6S6VzMusm9CCKx+EN1YOaBfdMb7xKQ5A=",
+        "owner": "moyiz",
+        "repo": "blink-emoji.nvim",
+        "rev": "dff709139ad5389fb55ebab026e75278a12b325a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "moyiz",
+        "repo": "blink-emoji.nvim",
+        "type": "github"
+      }
+    },
     "plugins-dropbar.nvim": {
       "flake": false,
       "locked": {
@@ -229,6 +261,8 @@
         "flake-parts": "flake-parts",
         "nixCats": "nixCats",
         "nixpkgs": "nixpkgs",
+        "plugins-blink-cmp-git": "plugins-blink-cmp-git",
+        "plugins-blink-emoji.nvim": "plugins-blink-emoji.nvim",
         "plugins-dropbar.nvim": "plugins-dropbar.nvim",
         "plugins-lze": "plugins-lze",
         "plugins-mcphub.nvim": "plugins-mcphub.nvim",

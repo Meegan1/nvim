@@ -44,6 +44,14 @@
       url = "github:marilari88/neotest-vitest";
       flake = false;
     };
+    plugins-blink-cmp-git = {
+      url = "github:Kaiser-Yang/blink-cmp-git";
+      flake = false;
+    };
+    "plugins-blink-emoji.nvim" = {
+      url = "github:moyiz/blink-emoji.nvim";
+      flake = false;
+    };
   };
 
   outputs =

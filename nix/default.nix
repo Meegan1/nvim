@@ -207,7 +207,11 @@ let
           nvim-autopairs
           nvim-ts-autotag
         ];
-        blink = pkgs.vimPlugins.blink-cmp;
+        blink = with pkgs; [
+          vimPlugins.blink-cmp
+          neovimPlugins.blink-cmp-git
+          neovimPlugins.blink-emoji-nvim
+        ];
         camelcase = pkgs.vimPlugins.camelcasemotion;
         codecompanion = with pkgs.vimPlugins; [
           codecompanion-nvim
