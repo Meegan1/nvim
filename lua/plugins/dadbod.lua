@@ -36,12 +36,13 @@ return {
 				desc = "Toggle DBUI",
 			},
 		},
+		before = function()
+			-- Enable nerd fonts
+			vim.g.db_ui_use_nerd_fonts = 1
+		end,
 		after = function()
 			-- Trigger the load of vim-dadbod to ensure it's available when DBUI is loaded
 			require("lze").trigger_load("vim-dadbod")
-
-			-- Your DBUI configuration
-			vim.g.db_ui_use_nerd_fonts = 1
 		end,
 	},
 }
