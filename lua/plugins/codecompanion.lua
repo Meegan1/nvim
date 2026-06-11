@@ -68,6 +68,22 @@ return {
 							end,
 							user = " " .. "User",
 						},
+
+						tools = {
+							groups = {
+								["read"] = {
+									description = "Read only tools",
+									tools = {
+										"ask_questions",
+										"file_search",
+										"grep_search",
+										"get_changed_files",
+										"get_diagnostics",
+										"read_file",
+									},
+								},
+							},
+						},
 					},
 					inline = {
 						adapter = "copilot",
