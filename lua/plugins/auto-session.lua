@@ -39,6 +39,13 @@ return {
 			end
 		end
 
+		local qf_was_open = false
+		vim.api.nvim_create_autocmd("VimLeavePre", {
+			callback = function()
+				qf_was_open = vim.fn.getqflist({ winid = 1 }).winid ~= 0
+			end,
+		})
+
 		require("auto-session").setup({
 			enabled = true,
 			auto_restore = auto_restore_enabled,
@@ -116,6 +123,7 @@ return {
 						return nil
 					end
 					local qfinfo = vim.fn.getqflist({ title = 1 })
+					local qf_is_open = qf_was_open -- use pre-captured state
 
 					for _, entry in ipairs(qflist) do
 						-- use filename instead of bufnr so it can be reloaded
@@ -125,7 +133,11 @@ return {
 
 					local setqflist = "call setqflist(" .. vim.fn.string(qflist) .. ")"
 					local setqfinfo = 'call setqflist([], "a", ' .. vim.fn.string(qfinfo) .. ")"
-					return { setqflist, setqfinfo, "copen" }
+					local cmds = { setqflist, setqfinfo }
+					if qf_is_open then
+						table.insert(cmds, "copen")
+					end
+					return cmds
 				end,
 			},
 
