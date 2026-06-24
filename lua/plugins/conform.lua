@@ -116,6 +116,7 @@ return {
 				css = biome,
 				scss = biome,
 				tex = { "tex-fmt" },
+				toml = { "tombi format" },
 			},
 			-- Set up format-on-save
 			format_on_save = function(bufnr)

@@ -470,4 +470,14 @@ return {
 			lspEnable(name)
 		end,
 	},
+	{
+		"tombi",
+		for_cat = "lsp",
+		before = function(plugin)
+			lspConfig(plugin)
+		end,
+		load = function(name)
+			lspEnable(name)
+		end,
+	},
 }

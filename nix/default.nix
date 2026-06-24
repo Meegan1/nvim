@@ -97,6 +97,7 @@ let
           shopify-cli
           intelephense
           laravel-ls
+          tombi
         ];
 
         sops = with pkgs; [
