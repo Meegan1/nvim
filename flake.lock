@@ -96,6 +96,38 @@
         "type": "github"
       }
     },
+    "plugins-codecompanion-history.nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1769053856,
+        "narHash": "sha256-SnzpyXqrAf60Vs7JbwuHmAJ/TNON8wwqNyPN3EGc2Og=",
+        "owner": "ravitemer",
+        "repo": "codecompanion-history.nvim",
+        "rev": "bc1b4fe06eaaf0aa2399be742e843c22f7f1652a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ravitemer",
+        "repo": "codecompanion-history.nvim",
+        "type": "github"
+      }
+    },
+    "plugins-codecompanion.nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1782839853,
+        "narHash": "sha256-4O0UuJuuv4gmyxiZlLMG/sKlt84SW2ZooeOlFlK6/7I=",
+        "owner": "olimorris",
+        "repo": "codecompanion.nvim",
+        "rev": "2e8865f81a0c8b5900fced953a81fe86c53416b1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "olimorris",
+        "repo": "codecompanion.nvim",
+        "type": "github"
+      }
+    },
     "plugins-dropbar.nvim": {
       "flake": false,
       "locked": {
@@ -279,6 +311,8 @@
         "nixpkgs": "nixpkgs",
         "plugins-blink-cmp-git": "plugins-blink-cmp-git",
         "plugins-blink-emoji.nvim": "plugins-blink-emoji.nvim",
+        "plugins-codecompanion-history.nvim": "plugins-codecompanion-history.nvim",
+        "plugins-codecompanion.nvim": "plugins-codecompanion.nvim",
         "plugins-dropbar.nvim": "plugins-dropbar.nvim",
         "plugins-lze": "plugins-lze",
         "plugins-mcphub.nvim": "plugins-mcphub.nvim",

@@ -56,6 +56,14 @@
       url = "github:pwntester/octo.nvim";
       flake = false;
     };
+    "plugins-codecompanion.nvim" = {
+      url = "github:olimorris/codecompanion.nvim";
+      flake = false;
+    };
+    "plugins-codecompanion-history.nvim" = {
+      url = "github:ravitemer/codecompanion-history.nvim";
+      flake = false;
+    };
   };
 
   outputs =

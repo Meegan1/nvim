@@ -214,10 +214,10 @@ let
           neovimPlugins.blink-emoji-nvim
         ];
         camelcase = pkgs.vimPlugins.camelcasemotion;
-        codecompanion = with pkgs.vimPlugins; [
+        codecompanion = with pkgs.neovimPlugins; [
           codecompanion-nvim
           codecompanion-history-nvim
-          pkgs.neovimPlugins.mcphub-nvim
+          mcphub-nvim
         ];
         colorizer = pkgs.vimPlugins.nvim-colorizer-lua;
         conform = pkgs.vimPlugins.conform-nvim;
