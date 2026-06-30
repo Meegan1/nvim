@@ -27,7 +27,7 @@ return {
 			local copilot_adapter = require("codecompanion.adapters").extend("copilot", {
 				schema = {
 					model = {
-						default = "gpt-5-mini",
+						default = "claude-sonnet-5",
 					},
 				},
 			})
