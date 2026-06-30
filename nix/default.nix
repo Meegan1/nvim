@@ -243,7 +243,10 @@ let
         glance = pkgs.vimPlugins.glance-nvim;
         grug-far = pkgs.vimPlugins.grug-far-nvim;
         hydra = pkgs.vimPlugins.hydra-nvim;
-        incline = pkgs.vimPlugins.incline-nvim;
+        incline = with pkgs.vimPlugins; [
+          incline-nvim
+          nvim-web-devicons
+        ];
         kulala = pkgs.vimPlugins.kulala-nvim;
         latex = pkgs.vimPlugins.vimtex;
         lualine =
