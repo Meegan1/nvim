@@ -49,8 +49,28 @@ return {
 		priority = 50,
 		before = function()
 			vim.keymap.set("n", "gl", vim.diagnostic.open_float, { desc = "Open LSP diagnostic float" })
-			vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Goto previous LSP Diagnostic" })
-			vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Goto next LSP Diagnostic" })
+			vim.keymap.set("n", "[d", function()
+				vim.diagnostic.jump({
+					count = -1,
+					on_jump = function()
+						vim.diagnostic.open_float({
+							scope = "cursor",
+							focus = false,
+						})
+					end,
+				})
+			end, { desc = "Goto previous LSP Diagnostic" })
+			vim.keymap.set("n", "]d", function()
+				vim.diagnostic.jump({
+					count = 1,
+					on_jump = function()
+						vim.diagnostic.open_float({
+							scope = "cursor",
+							focus = false,
+						})
+					end,
+				})
+			end, { desc = "Goto next LSP Diagnostic" })
 
 			vim.lsp.config("*", {
 				-- capabilities = capabilities,
