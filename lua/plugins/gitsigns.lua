@@ -14,7 +14,7 @@ return {
 
 				-- Actions
 				map("n", "<leader>hs", gitsigns.stage_hunk, {
-					desc = "Stage hunk",
+					desc = "Stage/Unstage hunk",
 				})
 				map("n", "<leader>hr", gitsigns.reset_hunk, {
 					desc = "Reset hunk",
@@ -31,9 +31,6 @@ return {
 				})
 				map("n", "<leader>hS", gitsigns.stage_buffer, {
 					desc = "Stage buffer",
-				})
-				map("n", "<leader>hu", gitsigns.undo_stage_hunk, {
-					desc = "Undo stage hunk",
 				})
 				map("n", "<leader>hR", gitsigns.reset_buffer, {
 					desc = "Reset buffer",
@@ -60,7 +57,7 @@ return {
 				end, {
 					desc = "Diff this (cached)",
 				})
-				map("n", "<leader>td", gitsigns.toggle_deleted, {
+				map("n", "<leader>td", gitsigns.preview_hunk_inline, {
 					desc = "Toggle deleted",
 				})
 
@@ -69,6 +66,17 @@ return {
 					gitsigns.select_hunk()
 				end, {
 					desc = "In hunk",
+				})
+
+				map("n", "]h", function()
+					gitsigns.nav_hunk("next")
+				end, {
+					desc = "Next hunk",
+				})
+				map("n", "[h", function()
+					gitsigns.nav_hunk("prev")
+				end, {
+					desc = "Previous hunk",
 				})
 
 				if nixCats("which-key") then
