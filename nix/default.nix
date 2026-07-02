@@ -214,10 +214,10 @@ let
           neovimPlugins.blink-emoji-nvim
         ];
         camelcase = pkgs.vimPlugins.camelcasemotion;
-        codecompanion = with pkgs.vimPlugins; [
+        codecompanion = with pkgs.neovimPlugins; [
           codecompanion-nvim
           codecompanion-history-nvim
-          pkgs.neovimPlugins.mcphub-nvim
+          mcphub-nvim
         ];
         colorizer = pkgs.vimPlugins.nvim-colorizer-lua;
         conform = pkgs.vimPlugins.conform-nvim;
@@ -243,7 +243,10 @@ let
         glance = pkgs.vimPlugins.glance-nvim;
         grug-far = pkgs.vimPlugins.grug-far-nvim;
         hydra = pkgs.vimPlugins.hydra-nvim;
-        incline = pkgs.vimPlugins.incline-nvim;
+        incline = with pkgs.vimPlugins; [
+          incline-nvim
+          nvim-web-devicons
+        ];
         kulala = pkgs.vimPlugins.kulala-nvim;
         latex = pkgs.vimPlugins.vimtex;
         lualine =
