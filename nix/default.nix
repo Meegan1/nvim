@@ -66,7 +66,7 @@ let
       lspsAndRuntimeDeps = {
         general = with pkgs; [
           perl5Packages.NeovimExt
-          python314Packages.pynvim
+          python315Packages.pynvim
           neovim-node-client
           ripgrep
           fzf
