@@ -415,7 +415,7 @@ let
           trouble = true;
           typst = true;
           ufo = true;
-          vectorcode = true;
+          vectorcode = false;
           which-key = true;
           window-management = true;
           yaml-schema-crds = true;
