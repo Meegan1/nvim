@@ -3,9 +3,18 @@ local ESC = vim.api.nvim_replace_termcodes("<esc>", true, true, true)
 -- bind <Esc> to close floating windows globally
 vim.on_key(function(key)
 	if key == ESC and (vim.fn.mode() == "n" or vim.fn.mode() == "v") then
+		-- let noice tear down its own views (content + border + backdrop)
+		if package.loaded["noice"] then
+			require("noice").cmd("dismiss")
+		end
+
 		for _, win in ipairs(vim.api.nvim_list_wins()) do
-			if vim.api.nvim_win_is_valid(win) and vim.api.nvim_win_get_config(win).relative ~= "" then
-				pcall(vim.api.nvim_win_close, win, false)
+			if vim.api.nvim_win_is_valid(win) then
+				local config = vim.api.nvim_win_get_config(win)
+				-- only close focusable floats; skips decorative overlays like incline.nvim
+				if config.relative ~= "" and config.focusable then
+					pcall(vim.api.nvim_win_close, win, false)
+				end
 			end
 		end
 	end
