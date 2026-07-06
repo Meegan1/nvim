@@ -31,14 +31,5 @@ return {
 				flags = "-u --hidden --glob=!{.git,node_modules,.nx,.next,dist,coverage}",
 			},
 		})
-
-		vim.api.nvim_create_autocmd("FileType", {
-			pattern = "grug-far",
-			callback = function()
-				vim.keymap.set("n", "q", function()
-					require("grug-far").close_instance("default")
-				end, { buffer = true, silent = true, desc = "Close grug-far window" })
-			end,
-		})
 	end,
 }
