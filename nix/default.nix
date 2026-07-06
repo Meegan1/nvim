@@ -88,6 +88,7 @@ let
         lsp = with pkgs; [
           lua-language-server
           typescript-language-server
+          typescript-go
           yaml-language-server
           vscode-langservers-extracted
           nixd
@@ -238,7 +239,7 @@ let
         ];
         dropbar = pkgs.neovimPlugins.dropbar-nvim;
         flash = pkgs.vimPlugins.flash-nvim;
-        fzf-lua = pkgs.vimPlugins.fzf-lua;
+        fzf-lua = pkgs.neovimPlugins.fzf-lua;
         github = pkgs.neovimPlugins.octo-nvim;
         glance = pkgs.vimPlugins.glance-nvim;
         grug-far = pkgs.vimPlugins.grug-far-nvim;
@@ -353,7 +354,7 @@ let
           # IMPORTANT:
           # your alias may not conflict with your other packages.
           aliases = [ "vim" ];
-          # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.neovim;
+          neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.neovim;
         };
         # and a set of categories that you want
         # (and other information to pass to lua)

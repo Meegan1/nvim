@@ -42,16 +42,7 @@ return {
 					title_pos = "center",
 				},
 			}, fzf_opts.kind == "codeaction" and {
-				winopts = {
-					layout = "vertical",
-					-- height is number of items minus 15 lines for the preview, with a max of 80% screen height
-					height = math.floor(math.min(vim.o.lines * 0.8 - 16, #items + 2) + 0.5) + 16,
-					width = 0.5,
-					preview = {
-						layout = "vertical",
-						vertical = "up:15,border-top",
-					},
-				},
+				winopts = {},
 			} or {
 				winopts = {
 					width = 0.5,
@@ -62,6 +53,36 @@ return {
 
 			return opts
 		end)
+
+		-- Sort code actions: quickfix > refactor > source > rest
+		local kind_order = { quickfix = 1, refactor = 2, source = 3 }
+		local function action_rank(item)
+			local action = item.action or item
+			if action.isPreferred then
+				return 0
+			end
+			local kind = (action.kind or ""):match("^[^%.]+") or ""
+			return kind_order[kind] or 4
+		end
+
+		local fzf_ui_select = vim.ui.select
+		---@diagnostic disable-next-line: duplicate-set-field
+		vim.ui.select = function(items, opts, on_choice)
+			if opts and opts.kind == "codeaction" then
+				local original = {}
+				for i, item in ipairs(items) do
+					original[item] = i
+				end
+				table.sort(items, function(a, b)
+					local ra, rb = action_rank(a), action_rank(b)
+					if ra ~= rb then
+						return ra < rb
+					end
+					return original[a] < original[b] -- stable within same kind
+				end)
+			end
+			return fzf_ui_select(items, opts, on_choice)
+		end
 
 		local config = fzf.config
 
@@ -142,7 +163,16 @@ return {
 
 		-- FZF-Lua LSP code actions
 		vim.keymap.set({ "n", "i", "v" }, "<C-.>", function()
-			fzf.lsp_code_actions()
+			vim.lsp.buf.code_action({
+				context = {
+					only = {
+						"quickfix",
+						"source",
+						"refactor",
+						"notebook",
+					},
+				},
+			})
 		end, {
 			desc = "fzf-lua: lsp code actions",
 		})

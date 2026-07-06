@@ -10,7 +10,18 @@ local on_attach = function(client, bufnr)
 	end
 
 	nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-	nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+	nmap("<leader>ca", function()
+		vim.lsp.buf.code_action({
+			context = {
+				only = {
+					"quickfix",
+					"source",
+					"refactor",
+					"notebook",
+				},
+			},
+		})
+	end, "[C]ode [A]ction")
 
 	nmap("gh", vim.lsp.buf.hover, "Show LSP Info")
 	nmap("gd", vim.lsp.buf.definition, "Open LSP Definition")
@@ -152,8 +163,92 @@ return {
 			},
 		},
 	},
+	-- {
+	-- 	"ts_ls",
+	-- 	for_cat = "lsp",
+	-- 	before = function(plugin)
+	-- 		lspConfig(plugin)
+	-- 	end,
+	-- 	load = function(name)
+	-- 		lspEnable(name)
+	-- 	end,
+	-- 	lsp = {
+	-- 		on_attach = function(client, bufnr)
+	-- 			on_attach(client, bufnr)
+	--
+	-- 			-- Enable inlay hints if nvim version is 0.10 or higher
+	-- 			if vim.fn.has("nvim-0.10") == 1 then
+	-- 				vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+	-- 			end
+	--
+	-- 			-- ts_ls provides `source.*` code actions that apply to the whole file. These only appear in
+	-- 			-- `vim.lsp.buf.code_action()` if specified in `context.only`.
+	-- 			vim.api.nvim_buf_create_user_command(bufnr, "LspTypescriptSourceAction", function()
+	-- 				local source_actions = vim.tbl_filter(function(action)
+	-- 					return vim.startswith(action, "source.")
+	-- 				end, client.server_capabilities.codeActionProvider.codeActionKinds)
+	--
+	-- 				vim.lsp.buf.code_action({
+	-- 					context = {
+	-- 						only = source_actions,
+	-- 						diagnostics = {},
+	-- 					},
+	-- 				})
+	-- 			end, {})
+	--
+	-- 			-- Go to source definition command
+	-- 			vim.api.nvim_buf_create_user_command(bufnr, "LspTypescriptGoToSourceDefinition", function()
+	-- 				local win = vim.api.nvim_get_current_win()
+	-- 				local params = vim.lsp.util.make_position_params(win, client.offset_encoding)
+	-- 				client:exec_cmd({
+	-- 					command = "_typescript.goToSourceDefinition",
+	-- 					title = "Go to source definition",
+	-- 					arguments = { params.textDocument.uri, params.position },
+	-- 				}, { bufnr = bufnr }, function(err, result)
+	-- 					if err then
+	-- 						vim.notify("Go to source definition failed: " .. err.message, vim.log.levels.ERROR)
+	-- 						return
+	-- 					end
+	-- 					if not result or vim.tbl_isempty(result) then
+	-- 						vim.notify("No source definition found", vim.log.levels.INFO)
+	-- 						return
+	-- 					end
+	-- 					vim.lsp.util.show_document(result[1], client.offset_encoding, { focus = true })
+	-- 				end)
+	-- 			end, { desc = "Go to source definition" })
+	--
+	-- 			vim.keymap.set("n", "<leader>ir", function()
+	-- 				vim.lsp.buf.code_action({
+	-- 					context = {
+	-- 						diagnostics = {},
+	-- 						---@diagnostic disable-next-line: assign-type-mismatch
+	-- 						only = { "source.removeUnused.ts" },
+	-- 					},
+	-- 					apply = true,
+	-- 				})
+	-- 			end, {
+	-- 				desc = "Remove unused imports",
+	-- 				buffer = bufnr,
+	-- 			})
+	--
+	-- 			vim.keymap.set("n", "<leader>if", function()
+	-- 				vim.lsp.buf.code_action({
+	-- 					context = {
+	-- 						diagnostics = {},
+	-- 						---@diagnostic disable-next-line: assign-type-mismatch
+	-- 						only = { "source.addMissingImports.ts" },
+	-- 					},
+	-- 					apply = true,
+	-- 				})
+	-- 			end, {
+	-- 				desc = "Fix imports",
+	-- 				buffer = bufnr,
+	-- 			})
+	-- 		end,
+	-- 	},
+	-- },
 	{
-		"ts_ls",
+		"tsgo",
 		for_cat = "lsp",
 		before = function(plugin)
 			lspConfig(plugin)
@@ -161,80 +256,59 @@ return {
 		load = function(name)
 			lspEnable(name)
 		end,
-		lsp = {
-			on_attach = function(client, bufnr)
-				on_attach(client, bufnr)
+		lsp = function()
+			local inlay_hints = {
+				parameterNames = { enabled = "literals", suppressWhenArgumentMatchesName = true },
+				parameterTypes = { enabled = false },
+				variableTypes = { enabled = false },
+				propertyDeclarationTypes = { enabled = false },
+				functionLikeReturnTypes = { enabled = false },
+				enumMemberValues = { enabled = false },
+			}
 
-				-- Enable inlay hints if nvim version is 0.10 or higher
-				if vim.fn.has("nvim-0.10") == 1 then
-					vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-				end
+			return {
+				settings = {
+					typescript = { inlayHints = inlay_hints },
+					javascript = { inlayHints = inlay_hints },
+				},
+				on_attach = function(client, bufnr)
+					on_attach(client, bufnr)
 
-				-- ts_ls provides `source.*` code actions that apply to the whole file. These only appear in
-				-- `vim.lsp.buf.code_action()` if specified in `context.only`.
-				vim.api.nvim_buf_create_user_command(bufnr, "LspTypescriptSourceAction", function()
-					local source_actions = vim.tbl_filter(function(action)
-						return vim.startswith(action, "source.")
-					end, client.server_capabilities.codeActionProvider.codeActionKinds)
+					-- Enable inlay hints if nvim version is 0.10 or higher
+					if vim.fn.has("nvim-0.10") == 1 then
+						vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+					end
 
-					vim.lsp.buf.code_action({
-						context = {
-							only = source_actions,
-							diagnostics = {},
-						},
+					vim.keymap.set("n", "<leader>ir", function()
+						vim.lsp.buf.code_action({
+							context = {
+								diagnostics = {},
+								---@diagnostic disable-next-line: assign-type-mismatch
+								only = { "source.removeUnusedImports" },
+							},
+							apply = true,
+						})
+					end, {
+						desc = "Remove unused imports",
+						buffer = bufnr,
 					})
-				end, {})
 
-				-- Go to source definition command
-				vim.api.nvim_buf_create_user_command(bufnr, "LspTypescriptGoToSourceDefinition", function()
-					local win = vim.api.nvim_get_current_win()
-					local params = vim.lsp.util.make_position_params(win, client.offset_encoding)
-					client:exec_cmd({
-						command = "_typescript.goToSourceDefinition",
-						title = "Go to source definition",
-						arguments = { params.textDocument.uri, params.position },
-					}, { bufnr = bufnr }, function(err, result)
-						if err then
-							vim.notify("Go to source definition failed: " .. err.message, vim.log.levels.ERROR)
-							return
-						end
-						if not result or vim.tbl_isempty(result) then
-							vim.notify("No source definition found", vim.log.levels.INFO)
-							return
-						end
-						vim.lsp.util.show_document(result[1], client.offset_encoding, { focus = true })
-					end)
-				end, { desc = "Go to source definition" })
-
-				vim.keymap.set("n", "<leader>ir", function()
-					vim.lsp.buf.code_action({
-						context = {
-							diagnostics = {},
-							---@diagnostic disable-next-line: assign-type-mismatch
-							only = { "source.removeUnused.ts" },
-						},
-						apply = true,
+					vim.keymap.set("n", "<leader>if", function()
+						vim.lsp.buf.code_action({
+							context = {
+								diagnostics = {},
+								---@diagnostic disable-next-line: assign-type-mismatch
+								only = { "source.fixAll" },
+							},
+							apply = true,
+						})
+					end, {
+						desc = "Fix imports",
+						buffer = bufnr,
 					})
-				end, {
-					desc = "Remove unused imports",
-					buffer = bufnr,
-				})
-
-				vim.keymap.set("n", "<leader>if", function()
-					vim.lsp.buf.code_action({
-						context = {
-							diagnostics = {},
-							---@diagnostic disable-next-line: assign-type-mismatch
-							only = { "source.addMissingImports.ts" },
-						},
-						apply = true,
-					})
-				end, {
-					desc = "Fix imports",
-					buffer = bufnr,
-				})
-			end,
-		},
+				end,
+			}
+		end,
 	},
 	{
 		"yamlls",
@@ -255,6 +329,12 @@ return {
 						["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
 						["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
 						["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
+					},
+					schemaStore = {
+						enable = true,
+					},
+					kubernetesCRDStore = {
+						enable = true,
 					},
 				},
 			},

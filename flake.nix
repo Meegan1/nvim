@@ -3,6 +3,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
     flake-parts.url = "github:hercules-ci/flake-parts";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
     "plugins-dropbar.nvim" = {
       url = "github:Bekaboo/dropbar.nvim";
@@ -62,6 +63,10 @@
     };
     "plugins-codecompanion-history.nvim" = {
       url = "github:ravitemer/codecompanion-history.nvim";
+      flake = false;
+    };
+    "plugins-fzf-lua" = {
+      url = "github:ibhagwan/fzf-lua";
       flake = false;
     };
   };
