@@ -1,25 +1,5 @@
 local ESC = vim.api.nvim_replace_termcodes("<esc>", true, true, true)
 
--- bind <Esc> to close floating windows globally
-vim.on_key(function(key)
-	if key == ESC and (vim.fn.mode() == "n" or vim.fn.mode() == "v") then
-		-- let noice tear down its own views (content + border + backdrop)
-		if package.loaded["noice"] then
-			require("noice").cmd("dismiss")
-		end
-
-		for _, win in ipairs(vim.api.nvim_list_wins()) do
-			if vim.api.nvim_win_is_valid(win) then
-				local config = vim.api.nvim_win_get_config(win)
-				-- only close focusable floats; skips decorative overlays like incline.nvim
-				if config.relative ~= "" and config.focusable then
-					pcall(vim.api.nvim_win_close, win, false)
-				end
-			end
-		end
-	end
-end, vim.api.nvim_create_namespace("close_floats_on_esc"))
-
 local on_attach = function(client, bufnr)
 	-- Your on_attach function should set buffer-local lsp related settings
 	local nmap = function(keys, func, desc)
@@ -66,6 +46,26 @@ return {
 		for_cat = "lsp",
 		priority = 50,
 		before = function()
+			-- bind <Esc> to close floating windows globally
+			vim.on_key(function(key)
+				if key == ESC and (vim.fn.mode() == "n" or vim.fn.mode() == "v") then
+					-- let noice tear down its own views (content + border + backdrop)
+					if package.loaded["noice"] then
+						require("noice").cmd("dismiss")
+					end
+
+					for _, win in ipairs(vim.api.nvim_list_wins()) do
+						if vim.api.nvim_win_is_valid(win) then
+							local config = vim.api.nvim_win_get_config(win)
+							-- only close focusable floats; skips decorative overlays like incline.nvim
+							if config.relative ~= "" and config.focusable then
+								pcall(vim.api.nvim_win_close, win, false)
+							end
+						end
+					end
+				end
+			end, vim.api.nvim_create_namespace("close_floats_on_esc"))
+
 			vim.keymap.set("n", "gl", vim.diagnostic.open_float, { desc = "Open LSP diagnostic float" })
 			vim.keymap.set("n", "[d", function()
 				vim.diagnostic.jump({
