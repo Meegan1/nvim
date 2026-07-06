@@ -1,5 +1,16 @@
 local ESC = vim.api.nvim_replace_termcodes("<esc>", true, true, true)
 
+-- bind <Esc> to close floating windows globally
+vim.on_key(function(key)
+	if key == ESC and (vim.fn.mode() == "n" or vim.fn.mode() == "v") then
+		for _, win in ipairs(vim.api.nvim_list_wins()) do
+			if vim.api.nvim_win_is_valid(win) and vim.api.nvim_win_get_config(win).relative ~= "" then
+				pcall(vim.api.nvim_win_close, win, false)
+			end
+		end
+	end
+end, vim.api.nvim_create_namespace("close_floats_on_esc"))
+
 local on_attach = function(client, bufnr)
 	-- Your on_attach function should set buffer-local lsp related settings
 	local nmap = function(keys, func, desc)
@@ -29,19 +40,6 @@ local on_attach = function(client, bufnr)
 	nmap("gr", vim.lsp.buf.references, "Show LSP References")
 	nmap("go", vim.lsp.buf.type_definition, "Open Type Definition")
 	nmap("gs", vim.lsp.buf.signature_help, "Open Signature Help")
-
-	-- bind <Esc> to close hover windows globally
-	vim.on_key(function(key)
-		if key == ESC and (vim.fn.mode() == "n" or vim.fn.mode() == "v") then
-			for _, win in ipairs(vim.api.nvim_list_wins()) do
-				local config = vim.api.nvim_win_get_config(win)
-				if config.relative ~= "" then
-					vim.api.nvim_win_close(win, false)
-				end
-			end
-		end
-	end)
-	-- etc...
 end
 
 local lspConfig = function(plugin)
