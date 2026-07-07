@@ -273,10 +273,17 @@ return {
 				enumMemberValues = { enabled = false },
 			}
 
+			local format_settings = {
+				tabSize = 2,
+				indentSize = 2,
+				baseIndentSize = 0,
+				convertTabsToSpaces = true,
+			}
+
 			return {
 				settings = {
-					typescript = { inlayHints = inlay_hints },
-					javascript = { inlayHints = inlay_hints },
+					typescript = { inlayHints = inlay_hints, format = format_settings },
+					javascript = { inlayHints = inlay_hints, format = format_settings },
 				},
 				on_attach = function(client, bufnr)
 					on_attach(client, bufnr)
