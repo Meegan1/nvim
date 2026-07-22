@@ -127,10 +127,9 @@ return {
 
 				return { timeout_ms = 1000, lsp_format = "fallback" }
 			end,
-			init = function()
-				-- Set the formatexpr to use Conform's formatexpr function
-				vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-			end,
 		})
+
+		-- Set the formatexpr to use Conform's formatexpr function
+		vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 	end,
 }
