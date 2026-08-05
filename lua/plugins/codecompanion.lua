@@ -24,25 +24,13 @@ return {
 				return vim.fn.fnamemodify(absolute_path, ":~:." .. root .. "/")
 			end
 
-			local copilot_adapter = require("codecompanion.adapters").extend("copilot", {
-				schema = {
-					model = {
-						default = "claude-sonnet-5",
-					},
-				},
-			})
-
 			require("codecompanion").setup({
-				adapters = {
-					http = {
-						copilot = function()
-							return copilot_adapter
-						end,
-					},
-				},
 				interactions = {
 					chat = {
-						adapter = "copilot",
+						adapter = {
+							name = "copilot",
+							model = "claude-sonnet-5",
+						},
 						slash_commands = {
 							["buffer"] = {
 								opts = {
