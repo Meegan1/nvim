@@ -247,28 +247,13 @@ return {
 			end, { noremap = true, silent = true, desc = "Open the CodeCompanion actions menu" })
 
 			vim.keymap.set({ "n", "x" }, "<leader>cm", function()
-				local models = copilot_adapter.schema.model.choices(copilot_adapter, {
-					async = false,
-				})
-				local model_names = {}
-				for name, _ in pairs(models) do
-					table.insert(model_names, name)
-				end
+				local chat = require("codecompanion.interactions.chat").last_chat()
 
-				local Chat = require("codecompanion").last_chat()
-
-				if not Chat then
+				if not chat then
 					return vim.notify("No chat found", vim.log.levels.ERROR)
 				end
 
-				vim.ui.select(model_names, {
-					prompt = "Select model:",
-				}, function(model)
-					if model then
-						Chat:change_model({ model = model })
-						vim.notify("Model changed to: " .. model)
-					end
-				end)
+				require("codecompanion.interactions.chat.keymaps.change_adapter").select_model(chat)
 			end, { noremap = true, silent = true, desc = "Change the model" })
 
 			vim.keymap.set({ "n", "x" }, "<leader>cb", function()
