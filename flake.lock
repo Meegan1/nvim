@@ -188,11 +188,11 @@
     "plugins-codecompanion.nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1782839853,
-        "narHash": "sha256-4O0UuJuuv4gmyxiZlLMG/sKlt84SW2ZooeOlFlK6/7I=",
+        "lastModified": 1785789420,
+        "narHash": "sha256-ILDvQBIn+QDDpwHDl3CIUgLMmeIehGqHg7+iwzGy2oA=",
         "owner": "olimorris",
         "repo": "codecompanion.nvim",
-        "rev": "2e8865f81a0c8b5900fced953a81fe86c53416b1",
+        "rev": "b27a1a734fdaf73e40328091cb5929d65aaa09e9",
         "type": "github"
       },
       "original": {
