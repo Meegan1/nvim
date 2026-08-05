@@ -228,6 +228,14 @@ return {
 
 					return extensions
 				end)(),
+
+				prompt_library = {
+					markdown = {
+						dirs = {
+							vim.fn.getcwd() .. "/.prompts",
+						},
+					},
+				},
 			})
 
 			vim.keymap.set({ "n", "x" }, "<leader>cc", function()
