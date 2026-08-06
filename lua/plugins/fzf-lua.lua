@@ -34,25 +34,25 @@ return {
 				},
 			},
 		})
-		fzf.register_ui_select(function(fzf_opts, items)
-			local opts = vim.tbl_deep_extend("force", fzf_opts, {
-				prompt = " ",
-				winopts = {
-					title = " " .. vim.trim((fzf_opts.prompt or "Select"):gsub("%s*:%s*$", "")) .. " ",
-					title_pos = "center",
-				},
-			}, fzf_opts.kind == "codeaction" and {
-				winopts = {},
-			} or {
-				winopts = {
-					width = 0.5,
-					-- height is number of items, with a max of 80% screen height
-					height = math.floor(math.min(vim.o.lines * 0.8, #items + 2) + 0.5),
-				},
-			})
-
-			return opts
-		end)
+		-- fzf.register_ui_select(function(fzf_opts, items)
+		-- 	local opts = vim.tbl_deep_extend("force", fzf_opts, {
+		-- 		prompt = " ",
+		-- 		winopts = {
+		-- 			title = " " .. vim.trim((fzf_opts.prompt or "Select"):gsub("%s*:%s*$", "")) .. " ",
+		-- 			title_pos = "center",
+		-- 		},
+		-- 	}, fzf_opts.kind == "codeaction" and {
+		-- 		winopts = {},
+		-- 	} or {
+		-- 		winopts = {
+		-- 			width = 0.5,
+		-- 			-- height is number of items, with a max of 80% screen height
+		-- 			height = math.floor(math.min(vim.o.lines * 0.8, #items + 2) + 0.5),
+		-- 		},
+		-- 	})
+		--
+		-- 	return opts
+		-- end)
 
 		-- Sort code actions: quickfix > refactor > source > rest
 		local kind_order = { quickfix = 1, refactor = 2, source = 3 }

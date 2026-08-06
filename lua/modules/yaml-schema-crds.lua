@@ -123,18 +123,15 @@ M.init = function()
 		return
 	end
 
-	require("fzf-lua").fzf_exec(results, {
+	require("snacks").picker.select(results, {
 		prompt = "Select schema> ",
-		actions = {
-			["default"] = function(selected)
-				if not selected or #selected == 0 then
-					vim.notify("No schema selected")
-					return
-				end
-				M.set_schema(selected[1])
-			end,
-		},
-	})
+	}, function(selected)
+		if not selected then
+			vim.notify("No schema selected")
+			return
+		end
+		M.set_schema(selected)
+	end)
 end
 
 M.setup = function()

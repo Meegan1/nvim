@@ -3,7 +3,7 @@ return {
 	for_cat = "github",
 	after = function()
 		require("octo").setup({
-			picker = "fzf-lua",
+			picker = "snacks",
 		})
 
 		local Job = require("plenary.job")

@@ -384,7 +384,7 @@ let
           dashboard = true;
           dropbar = true;
           flash = true;
-          fzf-lua = true;
+          fzf-lua = false;
           github = true;
           glance = true;
           grug-far = true;

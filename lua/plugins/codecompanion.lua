@@ -31,13 +31,6 @@ return {
 							name = "copilot",
 							model = "claude-sonnet-5",
 						},
-						slash_commands = {
-							["buffer"] = {
-								opts = {
-									provider = "fzf_lua",
-								},
-							},
-						},
 
 						agents = {
 							adapter = "copilot",
@@ -153,7 +146,7 @@ return {
 							-- Number of days after which chats are automatically deleted (0 to disable)
 							expiration_days = 0,
 							-- Picker interface (auto resolved to a valid picker)
-							picker = "fzf-lua", --- ("telescope", "snacks", "fzf-lua", or "default")
+							picker = "snacks", --- ("telescope", "snacks", "fzf-lua", or "default")
 							---Optional filter function to control which chats are shown when browsing
 							chat_filter = nil, -- function(chat_data) return boolean end
 							-- Customize picker keymaps (optional)

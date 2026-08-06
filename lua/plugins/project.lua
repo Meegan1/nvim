@@ -40,6 +40,46 @@ return {
 			end, {
 				desc = "fzf-lua: projects",
 			})
+		elseif nixCats("snacks") then
+			local history = require("project.utils.history")
+			local Snacks = require("snacks")
+
+			vim.keymap.set("n", "<leader>fp", function()
+				local results = history.get_recent_projects()
+				local items = {}
+				for i, e in ipairs(results) do
+					items[i] = { text = e, file = e }
+				end
+
+				Snacks.picker.pick({
+					source = "projects",
+					items = items,
+					format = "text",
+					confirm = function(picker, item)
+						picker:close()
+						if item then
+							Snacks.picker.files({ cwd = item.file })
+						end
+					end,
+					actions = {
+						delete_project = function(picker, item)
+							if item then
+								history.delete_project({ value = item.file })
+								picker:find()
+							end
+						end,
+					},
+					win = {
+						input = {
+							keys = {
+								["<c-d>"] = { "delete_project", mode = { "n", "i" } },
+							},
+						},
+					},
+				})
+			end, {
+				desc = "snacks: projects",
+			})
 		end
 	end,
 }

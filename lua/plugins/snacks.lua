@@ -37,7 +37,132 @@ return {
 			},
 
 			terminal = {},
+
+			input = {
+				enabled = true,
+			},
+
+			picker = {
+				ui_select = true,
+				layout = {
+					--- Use the default layout or vertical if the window is too narrow
+					preset = function()
+						return vim.o.columns >= 130 and "default" or "vertical"
+					end,
+				},
+
+				layouts = {
+					vertical = {
+						layout = {
+							width = 0.8,
+						},
+					},
+				},
+			},
 		})
+
+		-- Sort code actions: quickfix > refactor > source > rest
+		local kind_order = { quickfix = 1, refactor = 2, source = 3 }
+		local function action_rank(item)
+			local action = item.action or item
+			if action.isPreferred then
+				return 0
+			end
+			local kind = (action.kind or ""):match("^[^%.]+") or ""
+			return kind_order[kind] or 4
+		end
+
+		---@diagnostic disable-next-line: duplicate-set-field
+		vim.ui.select = function(items, sopts, on_choice)
+			if sopts and sopts.kind == "codeaction" then
+				local original = {}
+				for i, item in ipairs(items) do
+					original[item] = i
+				end
+				table.sort(items, function(a, b)
+					local ra, rb = action_rank(a), action_rank(b)
+					if ra ~= rb then
+						return ra < rb
+					end
+					return original[a] < original[b] -- stable within same kind
+				end)
+			end
+			return Snacks.picker.select(items, sopts, on_choice)
+		end
+
+		local find_files = function()
+			return Snacks.picker.files({
+				hidden = true,
+				ignored = false,
+			})
+		end
+
+		local find_live_grep = function()
+			return Snacks.picker.grep({
+				hidden = true,
+				ignored = true,
+			})
+		end
+
+		-- Files with hidden files and ignore .git
+		vim.keymap.set("n", "<leader>fd", function()
+			find_files()
+		end, { desc = "snacks: files" })
+
+		-- Commands
+		vim.keymap.set("n", "<leader>fc", function()
+			Snacks.picker.commands()
+		end, { desc = "snacks: commands" })
+
+		-- Buffers
+		vim.keymap.set("n", "<leader>fb", function()
+			Snacks.picker.buffers()
+		end, { desc = "snacks: buffers" })
+
+		-- Blines
+		-- Search in current file
+		vim.keymap.set("n", "<leader>fi", function()
+			Snacks.picker.lines()
+		end, { desc = "snacks: lines (blines)" })
+
+		-- Live grep with hidden files
+		vim.keymap.set("n", "<leader>fg", function()
+			find_live_grep()
+		end, { desc = "snacks: live grep" })
+
+		-- LSP workspace symbols
+		vim.keymap.set("n", "<leader>fs", function()
+			Snacks.picker.lsp_workspace_symbols()
+		end, { desc = "snacks: lsp workspace symbols" })
+
+		-- Undo tree
+		vim.keymap.set("n", "<leader>fu", function()
+			Snacks.picker.undo()
+		end, { desc = "snacks: undo tree" })
+
+		-- LSP code actions
+		vim.keymap.set({ "n", "i", "v" }, "<C-.>", function()
+			vim.lsp.buf.code_action({
+				context = {
+					only = {
+						"quickfix",
+						"source",
+						"refactor",
+						"notebook",
+					},
+				},
+			})
+		end, { desc = "snacks: lsp code actions" })
+
+		-- Add keybinding for snippets
+		vim.keymap.set("n", "<leader>fs", function()
+			require("modules.fzf.snippets").find_snippets()
+		end, { desc = "snacks: luasnip snippets" })
+
+		-- LSP Diagnostics (workspace)
+		vim.keymap.set("n", "<leader>fp", function()
+			Snacks.picker.diagnostics()
+		end, { desc = "snacks: lsp diagnostics" })
 
 		-- create command Notifications to show the notifications
 		vim.api.nvim_create_user_command("Notifications", function()
