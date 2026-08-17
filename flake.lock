@@ -201,6 +201,22 @@
         "type": "github"
       }
     },
+    "plugins-copilot.lua": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1786150241,
+        "narHash": "sha256-nrKBq1K43l34S812udQHKIPWoSamCgQLtfYq/AjBu5I=",
+        "owner": "zbirenbaum",
+        "repo": "copilot.lua",
+        "rev": "7e6723aabea044519462958ffcea68d7985c5ed0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zbirenbaum",
+        "repo": "copilot.lua",
+        "type": "github"
+      }
+    },
     "plugins-dropbar.nvim": {
       "flake": false,
       "locked": {
@@ -403,6 +419,7 @@
         "plugins-blink-emoji.nvim": "plugins-blink-emoji.nvim",
         "plugins-codecompanion-history.nvim": "plugins-codecompanion-history.nvim",
         "plugins-codecompanion.nvim": "plugins-codecompanion.nvim",
+        "plugins-copilot.lua": "plugins-copilot.lua",
         "plugins-dropbar.nvim": "plugins-dropbar.nvim",
         "plugins-fzf-lua": "plugins-fzf-lua",
         "plugins-lze": "plugins-lze",

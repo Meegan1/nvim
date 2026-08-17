@@ -57,6 +57,10 @@
       url = "github:pwntester/octo.nvim";
       flake = false;
     };
+    "plugins-copilot.lua" = {
+      url = "github:zbirenbaum/copilot.lua";
+      flake = false;
+    };
     "plugins-codecompanion.nvim" = {
       url = "github:olimorris/codecompanion.nvim";
       flake = false;

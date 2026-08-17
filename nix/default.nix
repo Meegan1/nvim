@@ -226,7 +226,7 @@ let
           nvim-ts-context-commentstring
           comment-nvim
         ];
-        copilot = pkgs.vimPlugins.copilot-lua;
+        copilot = pkgs.neovimPlugins.copilot-lua;
         dadbod = with pkgs.vimPlugins; [
           vim-dadbod
           vim-dadbod-ui
