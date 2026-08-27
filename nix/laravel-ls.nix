@@ -7,10 +7,10 @@ pkgs.buildGoModule rec {
     owner = "laravel-ls";
     repo = "laravel-ls";
     rev = "main"; # replace with a specific tag/commit for reproducibility
-    hash = "sha256-RR3qYi8Lyx+z+KmpQj456P5youINDxQzfv9cyhrywEs="; # fill in after first run
+    hash = "sha256-mA/URPemEFUcfiOzLhbElBDTFPsYAZS1ybRAu41mC78="; # fill in after first run
   };
 
-  vendorHash = "sha256-fWbB4FclmSnfQxKFetn5RCPY1jlsm7PeO3VFAZresr4="; # fill in after first run
+  vendorHash = "sha256-3DJPumD0cKHtfJo4bY2uRzgR39AhmjKNL92zLmxgox4="; # fill in after first run
 
   # This is critical: don't use the vendor directory, let Nix build it
   # so that C source files from tree-sitter are included
