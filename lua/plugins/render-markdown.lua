@@ -157,6 +157,10 @@ return {
 		require("render-markdown").setup({
 			enabled = false,
 			file_types = { "markdown", "codecompanion" },
+			patterns = { markdown = { disable = false } },
+			overrides = { buftype = { nofile = { enabled = false } } },
+			win_options = { conceallevel = { rendered = 1 } },
+
 			on = {
 				attach = function(ctx)
 					local bufnr = ctx.buf

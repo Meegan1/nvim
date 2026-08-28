@@ -397,7 +397,7 @@ let
           mdx = true;
           move = true;
           multicursor = true;
-          noice = true;
+          noice = false;
           nx = false;
           oil = true;
           overseer = true;
@@ -416,6 +416,7 @@ let
           trouble = true;
           typst = true;
           ufo = true;
+          ui2 = true;
           vectorcode = false;
           which-key = true;
           window-management = true;

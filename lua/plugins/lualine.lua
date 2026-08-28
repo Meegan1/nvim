@@ -10,6 +10,19 @@ return {
 			vim.o.laststatus = 3
 			vim.opt.cmdheight = 0
 
+			vim.api.nvim_create_autocmd("CmdlineEnter", {
+				callback = function()
+					require("lualine").hide({ place = { "statusline" } })
+					vim.o.laststatus = 0
+				end,
+			})
+			vim.api.nvim_create_autocmd("CmdlineLeave", {
+				callback = function()
+					require("lualine").hide({ place = { "statusline" }, unhide = true })
+					vim.o.laststatus = 3
+				end,
+			})
+
 			local CodeCompanionStatus = require("lualine.component"):extend()
 
 			CodeCompanionStatus.processing = false

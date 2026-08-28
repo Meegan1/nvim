@@ -165,6 +165,9 @@ return {
 		import = "plugins.ufo",
 	},
 	{
+		import = "plugins.ui2",
+	},
+	{
 		import = "plugins.vectorcode",
 	},
 	{
