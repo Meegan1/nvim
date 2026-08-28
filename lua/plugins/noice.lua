@@ -18,6 +18,15 @@ return {
 				vim.cmd([[messages clear]])
 			end
 
+			local cmdline_formats = require("noice.config").defaults().cmdline.format
+			for _, format in pairs(cmdline_formats) do
+				format.conceal = false
+			end
+
+			-- Set the report option to 10000 so that messages like "X lines yanked"
+			-- are only shown for changes that affect more than 10000 lines.
+			vim.opt.report = 10000
+
 			require("noice").setup({
 				cmdline = {
 					view = (function()
@@ -27,6 +36,12 @@ return {
 							return "cmdline_popup"
 						end
 					end)(),
+					format = {
+						cmdline = { conceal = false },
+						filter = { conceal = false },
+						lua = { conceal = false },
+						help = { conceal = false },
+					},
 				},
 				lsp = {
 					-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
@@ -54,6 +69,32 @@ return {
 					view = "messages",
 					view_errors = "messages",
 					view_warn = "messages",
+				},
+				routes = {
+					{
+						filter = {
+							event = "msg_show",
+							kind = "",
+							find = "%d+ lines? yanked",
+						},
+						view = "notify",
+					},
+					{
+						filter = {
+							event = "msg_show",
+							kind = "",
+							find = "%d+ (more|fewer) lines?",
+						},
+						view = "notify",
+					},
+					{
+						filter = {
+							event = "msg_show",
+							kind = "",
+							find = "%d+ lines? (changed|filtered|indented|moved|to indent)",
+						},
+						view = "notify",
+					},
 				},
 			})
 		end,
