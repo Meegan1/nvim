@@ -50,6 +50,11 @@ return {
 				notify = {
 					enabled = false, -- using snacks.nvim instead
 				},
+				messages = {
+					view = "messages",
+					view_errors = "messages",
+					view_warn = "messages",
+				},
 			})
 		end,
 	},
