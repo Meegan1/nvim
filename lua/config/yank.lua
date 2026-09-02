@@ -4,9 +4,24 @@ local preserve_cursor = {}
 preserve_cursor.state = {
 	cursor = { 0, 0 },
 }
+
+-- True while a built-in multicursor session is active in this buffer.
+-- Cursors are tracked as extmarks in the "nvim.multicursor" namespace.
+local function multicursor_active()
+	local ns = vim.api.nvim_get_namespaces()["nvim.multicursor"]
+	if not ns then
+		return false
+	end
+	return #vim.api.nvim_buf_get_extmarks(0, ns, 0, -1, { limit = 1 }) > 0
+end
+
 vim.api.nvim_create_autocmd({ "VimEnter", "CursorMoved" }, {
 	group = vim.api.nvim_create_augroup("NoMoveYank", { clear = true }),
 	callback = function()
+		-- Don't save positions replayed by follow-mode (q=)
+		if multicursor_active() then
+			return
+		end
 		preserve_cursor.state.cursor = vim.api.nvim_win_get_cursor(0)
 	end,
 })
@@ -14,7 +29,7 @@ vim.api.nvim_create_autocmd({ "VimEnter", "CursorMoved" }, {
 vim.api.nvim_create_autocmd("TextYankPost", {
 	group = "NoMoveYank",
 	callback = function()
-		if vim.v.event.operator == "y" and preserve_cursor.state.cursor then
+		if vim.v.event.operator == "y" and preserve_cursor.state.cursor and not multicursor_active() then
 			vim.api.nvim_win_set_cursor(0, preserve_cursor.state.cursor)
 		end
 	end,

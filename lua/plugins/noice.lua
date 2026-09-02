@@ -95,6 +95,14 @@ return {
 						},
 						view = "notify",
 					},
+					{
+						filter = {
+							event = "msg_show",
+							kind = "",
+							find = "multicursor: follow motion",
+						},
+						view = "notify",
+					},
 				},
 			})
 		end,

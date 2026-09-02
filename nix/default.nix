@@ -396,7 +396,7 @@ let
           markdown = true;
           mdx = true;
           move = true;
-          multicursor = true;
+          multicursor = false;
           noice = true;
           nx = false;
           oil = true;
