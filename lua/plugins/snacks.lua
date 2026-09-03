@@ -164,6 +164,21 @@ return {
 			Snacks.picker.diagnostics()
 		end, { desc = "snacks: lsp diagnostics" })
 
+		-- Pickers
+		vim.keymap.set("n", "<leader>fp", function()
+			Snacks.picker.pickers()
+		end, { desc = "snacks: pickers" })
+
+		-- Quickfix list
+		vim.keymap.set("n", "<leader>fq", function()
+			Snacks.picker.qflist()
+		end, { desc = "snacks: quickfix list" })
+
+		-- Keymaps
+		vim.keymap.set("n", "<leader>fk", function()
+			Snacks.picker.keymaps()
+		end, { desc = "snacks: keymaps" })
+
 		-- create command Notifications to show the notifications
 		vim.api.nvim_create_user_command("Notifications", function()
 			require("snacks").notifier.show_history()

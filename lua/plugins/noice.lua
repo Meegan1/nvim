@@ -103,6 +103,14 @@ return {
 						},
 						view = "notify",
 					},
+					{
+						filter = {
+							event = "msg_show",
+							kind = "",
+							find = "error list %d+ of %d+; %d+ errors?",
+						},
+						view = "notify",
+					},
 				},
 			})
 		end,
