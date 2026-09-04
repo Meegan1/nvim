@@ -73,6 +73,10 @@
       url = "github:ibhagwan/fzf-lua";
       flake = false;
     };
+    "plugins-minuet-ai.nvim" = {
+      url = "github:milanglacier/minuet-ai.nvim";
+      flake = false;
+    };
   };
 
   outputs =

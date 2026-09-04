@@ -262,6 +262,7 @@ let
           render-markdown-nvim
         ];
         mdx = pkgs.neovimPlugins.mdx-nvim;
+        minuet = pkgs.neovimPlugins.minuet-ai-nvim;
         move = pkgs.vimPlugins.mini-move;
         multicursor = pkgs.vimPlugins.multicursors-nvim;
         noice = with pkgs.vimPlugins; [
@@ -378,7 +379,7 @@ let
           colorizer = true;
           conform = true;
           comment = true;
-          copilot = true;
+          copilot = false;
           dadbod = true;
           dap = true;
           dashboard = true;
@@ -395,6 +396,7 @@ let
           lualine = true;
           markdown = true;
           mdx = true;
+          minuet = true;
           move = true;
           multicursor = false;
           noice = true;

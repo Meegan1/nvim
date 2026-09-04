@@ -1,7 +1,7 @@
 return {
 	{
 		"copilot-lualine",
-		for_cat = "lualine",
+		for_cat = "copilot",
 	},
 	{
 		"lualine.nvim",
@@ -9,6 +9,10 @@ return {
 		after = function()
 			vim.o.laststatus = 3
 			vim.opt.cmdheight = 0
+
+			if nixCats("copilot") then
+				require("lze").trigger_load("copilot-lualine")
+			end
 
 			local CodeCompanionStatus = require("lualine.component"):extend()
 
@@ -102,6 +106,13 @@ return {
 							cond = function()
 								return nixCats("copilot")
 							end,
+						},
+						{
+							require("minuet.lualine"),
+							cond = function()
+								return nixCats("minuet")
+							end,
+							display_name = "provider",
 						},
 						"filetype",
 					},

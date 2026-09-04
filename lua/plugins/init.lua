@@ -99,6 +99,9 @@ return {
 		import = "plugins.mini",
 	},
 	{
+		import = "plugins.minuet",
+	},
+	{
 		import = "plugins.multicursors",
 	},
 	{

@@ -297,6 +297,22 @@
         "type": "github"
       }
     },
+    "plugins-minuet-ai.nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1786690985,
+        "narHash": "sha256-X0ZGxxIQ/lmAyp2k/1LnPzIWeCpTjOcKik75SGUmAL8=",
+        "owner": "milanglacier",
+        "repo": "minuet-ai.nvim",
+        "rev": "3b0a4c5f97b7124d94302c608fbe01c0270d4fbe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "milanglacier",
+        "repo": "minuet-ai.nvim",
+        "type": "github"
+      }
+    },
     "plugins-neotest": {
       "flake": false,
       "locked": {
@@ -425,6 +441,7 @@
         "plugins-lze": "plugins-lze",
         "plugins-mcphub.nvim": "plugins-mcphub.nvim",
         "plugins-mdx.nvim": "plugins-mdx.nvim",
+        "plugins-minuet-ai.nvim": "plugins-minuet-ai.nvim",
         "plugins-neotest": "plugins-neotest",
         "plugins-neotest-vitest": "plugins-neotest-vitest",
         "plugins-nvim-nio": "plugins-nvim-nio",

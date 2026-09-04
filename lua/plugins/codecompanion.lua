@@ -3,6 +3,12 @@ return {
 		"codecompanion.nvim",
 		for_cat = "codecompanion",
 		after = function()
+			-- Choose the adapter/model based on whether the "copilot" nixCats category is enabled
+			local use_copilot = nixCats("copilot")
+			local adapter_name = use_copilot and "copilot" or "openrouter"
+			local adapter_model = use_copilot and "claude-sonnet-5" or "z-ai/glm-5.3"
+			local adapter_flash_model = use_copilot and "gpt-5-mini" or "z-ai/glm-5.3-flash"
+
 			-- Get the current buffer's path relative to project root
 			local function get_relative_path()
 				-- Try to get the root directory using LSP workspace folders first
@@ -28,12 +34,12 @@ return {
 				interactions = {
 					chat = {
 						adapter = {
-							name = "copilot",
-							model = "claude-sonnet-5",
+							name = adapter_name,
+							model = adapter_model,
 						},
 
 						agents = {
-							adapter = "copilot",
+							adapter = adapter_name,
 						},
 
 						roles = {
@@ -67,7 +73,7 @@ return {
 						},
 					},
 					inline = {
-						adapter = "copilot",
+						adapter = adapter_name,
 					},
 				},
 				extensions = (function()
@@ -159,9 +165,9 @@ return {
 							auto_generate_title = true,
 							title_generation_opts = {
 								---Adapter for generating titles (defaults to current chat adapter)
-								adapter = "copilot", -- "copilot"
+								adapter = adapter_name,
 								---Model for generating titles (defaults to current chat model)
-								model = "gpt-5-mini", -- "gpt-4o"
+								model = adapter_flash_model,
 								---Number of user prompts after which to refresh the title (0 to disable)
 								refresh_every_n_prompts = 0, -- e.g., 3 to refresh after every 3rd user prompt
 								---Maximum number of times to refresh the title (default: 3)
