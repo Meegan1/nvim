@@ -86,6 +86,19 @@ return {
 			-- 		"Do not commit changes to generated files under src/generated/",
 			-- 	})
 			-- end
+			--
+			-- OR
+			--
+			-- if _G.FugitiveAddCommitContext then
+			--   FugitiveAddCommitContext({
+			--     "# - Follow Conventional Commits: <type>(scope): <description>",
+			--     "# - Types: feat, fix, chore, docs, refactor, test, style, perf",
+			--     "# - Keep subject line under 72 characters",
+			--     "# - Use imperative mood (e.g. 'add feature' not 'added feature')",
+			--     "# - Read the diff in the current buffer to understand the changes being committed",
+			--     "# - Use lowercase types and scopes, description should start with a lowercase letter as well",
+			--   })
+			-- end
 			_G.FugitiveAddCommitContext = Fugitive.add_commit_context
 
 			vim.api.nvim_create_autocmd("User", {
@@ -102,12 +115,6 @@ return {
 					local context = {
 						"# ---",
 						"# Context",
-						"# - Follow Conventional Commits: <type>(scope): <description>",
-						"# - Types: feat, fix, chore, docs, refactor, test, style, perf",
-						"# - Keep subject line under 72 characters",
-						"# - Use imperative mood (e.g. 'add feature' not 'added feature')",
-						"# - Read the diff in the current buffer to understand the changes being committed",
-						"# - Use lowercase types and scopes, description should start with a lowercase letter as well",
 					}
 
 					-- Merge in any project-specific context inside the separator
@@ -118,7 +125,9 @@ return {
 					table.insert(context, "# ---")
 					table.insert(context, "#")
 
-					vim.api.nvim_buf_set_lines(bufnr, 1, 1, false, context)
+					if #_extra_context > 0 then
+						vim.api.nvim_buf_set_lines(bufnr, 1, 1, false, context)
+					end
 
 					-- Reset Copilot cache so suggestions are fresh for this commit
 					local ok, copilot = pcall(require, "copilot.suggestion")
