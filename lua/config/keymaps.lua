@@ -23,3 +23,12 @@ end)
 vim.keymap.set("n", "]f", function()
 	vim.cmd("cnewer")
 end)
+
+-- Navigate to next/previous file with changes in `git status`
+local git_status_files = require("utils.git-status-files")
+vim.keymap.set("n", "]g", function()
+	git_status_files.goto_git_status_file(1)
+end, { desc = "Next file in git status" })
+vim.keymap.set("n", "[g", function()
+	git_status_files.goto_git_status_file(-1)
+end, { desc = "Previous file in git status" })
